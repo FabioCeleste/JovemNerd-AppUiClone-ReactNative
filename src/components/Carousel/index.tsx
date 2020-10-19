@@ -3,14 +3,14 @@ import React, { useState, useEffect, useRef } from 'react';
 import { View, Dimensions, StyleSheet } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
-import CarouselItem from '../../@types/CarouselItem';
+import ContentItem from '../../@types/ContentItem';
 
 import {
   ImageItem, CarouselView, Dot, DotContainer, ItemType, ItemSubTitle, TextContainer,
 } from './styles';
 
 interface Props {
-  items: CarouselItem[]
+  items: ContentItem[]
 }
 
 const { width } = Dimensions.get('window');
@@ -18,7 +18,7 @@ const { width } = Dimensions.get('window');
 const Carousel: React.FC<Props> = (props) => {
   const [activeItem, setActiveItem] = useState(0);
   const [lastSlide, setLastSlide] = useState(0);
-  const [items, setItem] = useState<CarouselItem[]>([...props.items]);
+  const [items, setItem] = useState<ContentItem[]>([...props.items]);
   const scrollRef = useRef<ScrollView>();
 
   // useEffect(() => {

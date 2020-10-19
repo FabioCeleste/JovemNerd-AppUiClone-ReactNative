@@ -32,15 +32,15 @@ const HeaderOptions: React.FC = () => {
         </ButtonOption>
 
         <ButtonOption onPress={() => changeActiveMenus(1, 100)}>
-          <Option active={active} index={1}>TODOS</Option>
+          <Option active={active} index={1}>NOTÍCIAS</Option>
         </ButtonOption>
 
         <ButtonOption onPress={() => changeActiveMenus(2, 200)}>
-          <Option active={active} index={2}>TODOS</Option>
+          <Option active={active} index={2}>REVIEWS</Option>
         </ButtonOption>
 
         <ButtonOption onPress={() => changeActiveMenus(3, 300)}>
-          <Option active={active} index={3}>TODOS</Option>
+          <Option active={active} index={3}>ESPECIAIS</Option>
         </ButtonOption>
 
       </Options>

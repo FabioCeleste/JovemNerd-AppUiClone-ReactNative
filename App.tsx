@@ -10,9 +10,10 @@ export default function App() {
   return (
     <>
       <StatusBar style="light" />
-      <View style={{ backgroundColor: '#000' }}>
+      <View style={{ backgroundColor: '#222', flex: 1 }}>
         <Home />
       </View>
     </>
+
   );
 }

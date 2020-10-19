@@ -7,6 +7,7 @@ interface props {
 }
 
 export const Container = styled.View`
+  background: #000000;
   
 `;
 
