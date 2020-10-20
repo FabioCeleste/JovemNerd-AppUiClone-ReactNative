@@ -10,9 +10,11 @@ import ContentList from '../ContentList';
 
 interface Props {
   items: ContentItem[]
+  headerOptionsIndex: number;
+  onChangeHeaderIndex: (newIndex: number) => void
 }
 
-const Main: React.FC<Props> = ({ items }) => {
+const Main: React.FC<Props> = ({ items, headerOptionsIndex, onChangeHeaderIndex }) => {
   const toCarousel: ContentItem[] = [];
   for (let i = 0; i < 4; i++) {
     toCarousel.push(items[i]);
@@ -22,7 +24,7 @@ const Main: React.FC<Props> = ({ items }) => {
     <ScrollView stickyHeaderIndices={[1]} nestedScrollEnabled>
       <Carousel items={toCarousel} />
       <ContentFilter />
-      <ContentList items={items} />
+      <ContentList items={items} headerOptionsIndex={headerOptionsIndex} onChangeHeaderIndex={onChangeHeaderIndex} />
     </ScrollView>
   );
 };

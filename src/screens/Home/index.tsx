@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, StatusBar, StyleSheet } from 'react-native';
 
 import Header from '../../components/Header';
@@ -242,14 +242,35 @@ const ContentItems: ContentItem[] = [
   },
 ];
 
-const Home: React.FC = () => (
+interface Props {
+  navigation: {
+    openDrawer: () => void
+  }
+}
 
-  <View style={{ flex: 1, marginTop: StatusBar.currentHeight }}>
-    <Header />
-    <HeaderOptions />
-    <Main items={ContentItems} />
-  </View>
+const Home: React.FC<Props> = ({ navigation }) => {
+  const [headerOptionsIndex, setHeaderOptionsIndex] = useState(0);
 
-);
+  const onChangeHeaderIndex = (newIndex: number) => {
+    setHeaderOptionsIndex(newIndex);
+  };
+
+  return (
+    <View style={{ backgroundColor: '#222', flex: 1 }}>
+      <View style={{ flex: 1, marginTop: StatusBar.currentHeight }}>
+        <Header openDrawer={navigation.openDrawer} />
+        <HeaderOptions
+          headerOptionsIndex={headerOptionsIndex}
+          onChangeHeaderIndex={onChangeHeaderIndex}
+        />
+        <Main
+          items={ContentItems}
+          headerOptionsIndex={headerOptionsIndex}
+          onChangeHeaderIndex={onChangeHeaderIndex}
+        />
+      </View>
+    </View>
+  );
+};
 
 export default Home;

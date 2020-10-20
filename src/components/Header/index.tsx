@@ -6,10 +6,14 @@ import {
   Container, TextHeader, TextBunker, LeftHeader, RightHeader,
 } from './styles';
 
-const Header: React.FC = () => (
+interface Props {
+  openDrawer: () => void;
+}
+
+const Header: React.FC<Props> = ({ openDrawer }) => (
   <Container>
     <LeftHeader>
-      <AntDesign name="bars" size={28} color="white" />
+      <AntDesign onPress={() => openDrawer()} name="bars" size={28} color="white" />
 
       <TextHeader>
         <TextHeader>

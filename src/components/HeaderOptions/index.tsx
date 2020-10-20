@@ -6,41 +6,39 @@ import {
   Container, Options, Option, BottomBar, ButtonOption,
 } from './styles';
 
-const HeaderOptions: React.FC = () => {
-  const [active, setActive] = useState(0);
+interface Props {
+  headerOptionsIndex: number;
+  onChangeHeaderIndex: (newIndex: number) => void
+}
 
+const HeaderOptions: React.FC<Props> = ({ headerOptionsIndex, onChangeHeaderIndex }) => {
   const bottomBarPosition = useSharedValue(0);
-
-  useEffect(() => {
-
-  }, []);
 
   const bottomBarStyle = useAnimatedStyle(() => ({
     transform: [{ translateX: bottomBarPosition.value }],
   }));
 
-  function changeActiveMenus(index: number, borderPosition: number) {
-    setActive(index);
-    bottomBarPosition.value = withTiming(borderPosition, { duration: 500 });
-  }
+  useEffect(() => {
+    bottomBarPosition.value = withTiming(headerOptionsIndex * 100, { duration: 200 });
+  }, [headerOptionsIndex]);
 
   return (
     <Container>
       <Options>
-        <ButtonOption onPress={() => changeActiveMenus(0, 0)}>
-          <Option active={active} index={0}>TODOS</Option>
+        <ButtonOption onPress={() => onChangeHeaderIndex(0)}>
+          <Option active={headerOptionsIndex} index={0}>TODOS</Option>
         </ButtonOption>
 
-        <ButtonOption onPress={() => changeActiveMenus(1, 100)}>
-          <Option active={active} index={1}>NOTÍCIAS</Option>
+        <ButtonOption onPress={() => onChangeHeaderIndex(1)}>
+          <Option active={headerOptionsIndex} index={1}>NOTÍCIAS</Option>
         </ButtonOption>
 
-        <ButtonOption onPress={() => changeActiveMenus(2, 200)}>
-          <Option active={active} index={2}>REVIEWS</Option>
+        <ButtonOption onPress={() => onChangeHeaderIndex(2)}>
+          <Option active={headerOptionsIndex} index={2}>REVIEWS</Option>
         </ButtonOption>
 
-        <ButtonOption onPress={() => changeActiveMenus(3, 300)}>
-          <Option active={active} index={3}>ESPECIAIS</Option>
+        <ButtonOption onPress={() => onChangeHeaderIndex(3)}>
+          <Option active={headerOptionsIndex} index={3}>ESPECIAIS</Option>
         </ButtonOption>
 
       </Options>
